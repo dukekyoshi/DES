@@ -185,6 +185,15 @@ public class DES {
         }
     }
 
+    public String getCipherText() {
+        String cipherText = "";
+        String[] temp = cipher.split("(?<=\\G.{4})");
+        for(int i = 0; i < temp.length; i++) {
+            cipherText += Integer.toHexString(Integer.parseInt(temp[i], 2));
+        }
+        return cipherText;
+    }
+
     public String[] round(String left, String right, String rndKey) {
         String Ln = right;
         String Rn = xor(left, function(right, rndKey));

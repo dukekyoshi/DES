@@ -1,19 +1,29 @@
 package ver3;
 
 import java.math.BigInteger;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
         DES d = new DES();
-        d.setMessage("the quick brown fox is jumping on the street so please don't tell Bob about this");
-        d.setKey("password");
+        System.out.println("Enter message:");
+        String msg = sc.nextLine();
+        d.setMessage(msg);
+
+        System.out.print("Enter password: ");
+        String pswd = sc.nextLine();
+        d.setKey(pswd);
+
         d.initialize();
         d.encrypt();
-        String cipher = binToHex(d.cipher);
-        String plain = binToStr(d.decrypt());
+        
+        String cipher = d.getCipherText();
         System.out.println(cipher);
-        System.out.println(plain);
+
+        sc.close();
     }
 
     public static BigInteger hex2decimal(String s) {
