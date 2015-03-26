@@ -8,20 +8,32 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        DES d = new DES();
-        System.out.println("Enter message:");
+        Encryption e = new Encryption();
+        System.out.println("Enter message: ");
         String msg = sc.nextLine();
-        d.setMessage(msg);
+        e.setMessage(msg);
 
         System.out.print("Enter password: ");
         String pswd = sc.nextLine();
-        d.setKey(pswd);
+        e.setKey(pswd);
 
-        d.initialize();
-        d.encrypt();
-        
-        String cipher = d.getCipherText();
+        e.initialize();
+        e.encrypt();
+
+        String cipher = e.getCipherText();
         System.out.println(cipher);
+
+        Decryption d = new Decryption();
+        System.out.print("Enter encrypted message: ");
+        String enMsg = sc.nextLine();
+        d.setCipher(enMsg);
+
+        System.out.print("Enter password: ");
+        String pass = sc.nextLine();
+        d.setKey(pass);
+
+        String plainMsg = d.decrypt();
+        System.out.println("Message: " + binToStr(plainMsg).replace(" ", ""));
 
         sc.close();
     }
